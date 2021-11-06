@@ -8,6 +8,7 @@ const inputLogin = document.getElementById('login');
 const inputPassword = document.getElementById('password');
 
 const login = (user) => {
+  if (inputLogin.value.length !== 0)  {
 
   buttonAuth.style.display = 'none';
 
@@ -15,7 +16,7 @@ const login = (user) => {
   userName.style.display = 'flex';
   userName.textContent = user.login;
   modalAuth.style.display = 'none';
-
+  }
 
 };
 
@@ -42,6 +43,14 @@ closeAuth.addEventListener('click', () => {
 
 logInForm.addEventListener('submit', (event) => {
   event.preventDefault();
+  if (inputLogin.value.length == 0) {
+    inputLogin.style.backgroundColor = 'red';
+    alert('Введите логин');
+  };
+  
+ inputLogin.onfocus =  function() {
+   inputLogin.style.backgroundColor = 'transparent';             
+ }; 
 
   const user = {
     login: inputLogin.value,
