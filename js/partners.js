@@ -5,7 +5,7 @@ const renderItems = (data) => {
   data.forEach(({ image, kitchen, name, price, products, stars, time_of_delivery }) => {
     const a = document.createElement('a');
 
-    a.setAttribute('herf', '/restaurant.html');
+    a.setAttribute('href', '/restaurant.html');
     a.classList.add('card')
     a.classList.add('card-restaurant')
     a.dataset.products = products
@@ -27,7 +27,17 @@ const renderItems = (data) => {
         </div>
       </div>  
     `
-    cardsRestaurants.append(a)
+
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const link = a.dataset.products
+      
+      localStorage.setItem('restaurant', link)
+
+      window.location.href = '/restaurant.html'
+    })
+    cardsRestaurants.append(a);
+
   })
 }
 
